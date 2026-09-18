@@ -1,0 +1,970 @@
+<!DOCTYPE html><html lang="es" style="scroll-behavior: smooth;"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>Dali's Bakery | Repostería Fina Artesanal en Cali</title><meta content="Dali's Bakery en Santiago de Cali. Tortas de autor, postres personalizados y regalos dulces con horneado fresco y domicilios a toda la ciudad." name="description"><meta content="reposteria cali, tortas personalizadas cali, postres artesanales santiago de cali, regalos dulces cali" name="keywords"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>
+@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}
+::-webkit-scrollbar{display:none;}
+
+/* Smooth animations and micro-interactions */
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
+  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+
+@keyframes shimmerEffect {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-float {
+  animation: floatSoft 4s ease-in-out infinite;
+}
+
+.animate-whatsapp-pulse {
+  animation: pulseGlow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Scroll reveal states */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Delay helpers for staggered reveals */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* Micro-interaction polish */
+.product-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px -8px rgba(66, 37, 24, 0.12);
+}
+
+.interactive-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.interactive-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-150%);
+  pointer-events: none;
+}
+
+.interactive-btn:hover::after {
+  animation: shimmerEffect 0.85s ease-in-out;
+}
+
+.interactive-btn:hover {
+  transform: scale(1.025);
+}
+
+.interactive-btn:active {
+  transform: scale(0.96);
+}
+
+.value-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -6px rgba(66, 37, 24, 0.1);
+}
+
+.value-card:hover .icon-bounce {
+  transform: scale(1.1) rotate(6deg);
+}
+
+.icon-bounce {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Nav links animated underline */
+.nav-anim-link {
+  position: relative;
+}
+.nav-anim-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #914941;
+  transition: all 0.25s ease;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+}
+.nav-anim-link:hover::after {
+  width: 60%;
+}
+
+/* Toast preview notification */
+#toast-notification {
+  transform: translateY(100px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#toast-notification.toast-active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-fixed": "#002109", "surface-container-lowest": "#ffffff", "surface-container-low": "#fef1e8", "tertiary-container": "#003413", "on-surface-variant": "#50443f", "on-background": "#201b15", "primary-fixed-dim": "#ecbca9", "background": "#fff8f4", "inverse-on-surface": "#fbefe6", "surface-dim": "#e3d8cf", "primary": "#2a1106", "on-tertiary": "#ffffff", "secondary-container": "#ffa398", "inverse-primary": "#ecbca9", "outline-variant": "#d5c3bc", "secondary-fixed-dim": "#ffb4aa", "surface-container-highest": "#ece0d8", "on-primary-fixed-variant": "#603f30", "on-error": "#ffffff", "on-tertiary-container": "#00aa4d", "inverse-surface": "#362f29", "on-secondary": "#ffffff", "error": "#ba1a1a", "on-error-container": "#93000a", "on-primary-fixed": "#2e1509", "on-surface": "#201b15", "secondary": "#914941", "on-secondary-fixed-variant": "#74332b", "error-container": "#ffdad6", "on-secondary-fixed": "#3b0805", "tertiary-fixed": "#66ff8e", "surface-tint": "#7b5646", "surface-variant": "#ece0d8", "tertiary": "#001d07", "primary-fixed": "#ffdbcd", "surface-bright": "#fff8f4", "tertiary-fixed-dim": "#3de273", "surface-container": "#f8ece3", "on-primary": "#ffffff", "surface-container-high": "#f2e6dd", "on-primary-container": "#b58a78", "on-secondary-container": "#7a372f", "on-tertiary-fixed-variant": "#005322", "primary-container": "#422518", "outline": "#83746f", "surface": "#fff8f4", "secondary-fixed": "#ffdad5" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-lg": "1.5rem", "margin": "2.5rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-md": "1rem", "margin-mobile": "1rem", "space-xl": "2.5rem", "gutter-mobile": "0.75rem", "gutter": "1.25rem" }, "fontFamily": { "body-lg": [ "Plus Jakarta Sans" ], "headline-lg": [ "Playfair Display" ], "display-lg-mobile": [ "Playfair Display" ], "display-md": [ "Playfair Display" ], "headline-md": [ "Playfair Display" ], "label-md": [ "Plus Jakarta Sans" ], "display-lg": [ "Playfair Display" ], "display-md-mobile": [ "Playfair Display" ], "label-lg": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-sm": [ "Playfair Display" ], "label-sm": [ "Plus Jakarta Sans" ] }, "fontSize": { "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "400" } ], "headline-lg": [ "32px", { "lineHeight": "38px", "fontWeight": "500" } ], "display-lg-mobile": [ "38px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "display-md": [ "42px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-md": [ "26px", { "lineHeight": "32px", "fontWeight": "500" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "display-lg": [ "56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "display-md-mobile": [ "30px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-sm": [ "20px", { "lineHeight": "26px", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(66,37,24,0.06)] transition-all duration-300"><div class="bg-primary-container text-surface px-margin py-1.5 text-center font-label-sm text-label-sm tracking-wider flex items-center justify-center gap-space-xs"><span class="material-symbols-outlined text-[15px] text-secondary-container">location_on</span><span class="">Entregas en Santiago de Cali • Horneado fresco a diario • Envíos y regalos a domicilio</span></div><div class="h-20 max-w-[1240px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><a class="flex items-center gap-space-sm group transition-transform duration-200 hover:scale-[1.02]" href="#inicio"><img alt="Logo Dali's Bakery" class="h-8 w-auto object-contain transition-transform group-hover:rotate-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALV5gCfv8gJfmc2vC_enLBs9al6tENha6Q2i0WRk6kiRvc8fq6GEQSpbBfaRAr7weZGha0pO3Uv5jIOyMPQfML1BmuG0mKNZ4A4eCiT1_TmdcHRDqBHVxVz6mEQOW8yc9cy6lVZZYEB-mfInGssMA8aJ8FgDOkKdE6WC_PL4PaXxI5xVSia90LWKVr0pzgVQytBxj1JH4MAIVa17wBTAcErBLJ158CmvRVRYE7rqOHuIZr404qaegbhUd2z4lJrAgehCxWKumZnk4sXlE"><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">Dali's Bakery</span></a></div><nav class="hidden lg:flex items-center gap-space-xs px-space-xs py-1 rounded-full bg-surface-container-low/70" data-active-classes="bg-surface-container text-primary font-semibold rounded-full shadow-sm"><a aria-current="page" class="nav-anim-link px-space-sm py-1.5 transition-all bg-surface-container text-primary font-semibold rounded-full shadow-sm" data-path="inicio" href="#inicio">Inicio</a><a class="nav-anim-link px-space-sm py-1.5 rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="catalogo" href="#catalogo">Catálogo</a><a class="nav-anim-link px-space-sm py-1.5 rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="nuestra-propuesta" href="#propuesta">Nuestra Propuesta</a><a class="nav-anim-link px-space-sm py-1.5 rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="ubicacion" href="#ubicacion">Ubicación</a><a class="nav-anim-link px-space-sm py-1.5 rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="redes-sociales" href="#redes">Redes Sociales</a><a class="nav-anim-link px-space-sm py-1.5 rounded-full font-label-lg text-label-lg bg-secondary-container/30 text-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-all flex items-center gap-1 font-semibold hover:shadow-sm" data-path="personalizacion" href="#personalizacion">Personalización</a></nav><div class="flex items-center gap-space-sm"><a class="interactive-btn hidden sm:inline-flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary px-space-md py-2.5 rounded-full font-label-lg text-label-lg tracking-wide shadow-[0_4px_16px_-2px_rgba(66,37,24,0.25)]" href="https://wa.me/573001234567?text=Hola%20Dali%27s%20Bakery,%20quisiera%20hacer%20un%20pedido%20especial" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px] text-tertiary-fixed">chat</span><span class="">Pedir por WhatsApp</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm hover:rotate-12 transition-transform cursor-pointer"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-background"><div class="flex flex-col w-full">
+<!-- Schema.org JSON-LD for LocalBusiness / Bakery in Cali -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Dali's Bakery",
+    "image": "https://lh3.googleusercontent.com/aida/AEtjO1WTsn3kHO1uRDyGI-WDzw2EIBAbRhlQK5ZCxVSbWMh-QPZKB9lu57jgQ1EWNs-LF3J_FeIZNPG8aiiimnQshtG2XxeA7UUiCyeMeZ6HAU_WZCXdhsQVUHsdo8Hkv9jCa1EPvZUxqDlXvxjL0QGUUrWU9wvBoOmklFxB1iUkhTVKBnfeH4SjMLg4ORAPMcT7796m6in2Olt11Jv3KZacqhuUts0qA4p67nhlr2sSjLyfHlAKqLGOTrfnw-s",
+    "description": "Repostería artesanal prémium en Santiago de Cali. Tortas de autor, alfajores con arequipe casero, milhojas y empaques de regalo personalizados.",
+    "telephone": "+57-300-000-0000",
+    "priceRange": "$$",
+    "servesCuisine": "Pastelería Artesanal, Postres de Autor, Regalos Dulces",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Santiago de Cali",
+      "addressRegion": "Valle del Cauca",
+      "addressCountry": "CO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 3.4516,
+      "longitude": -76.5320
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:00",
+        "closes": "19:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Sunday"],
+        "opens": "09:00",
+        "closes": "16:00"
+      }
+    ],
+    "keywords": "Postres Cali, dulce, tradición, repostería, horneados, felicidad, antojo, pastelería, compartir, tortas personalizadas Cali, regalos dulces Cali"
+  }
+  </script>
+<!-- =========================================================================
+       HERO SECTION (#inicio)
+       ========================================================================= -->
+<section class="relative w-full py-space-xl lg:py-28 overflow-hidden bg-background" id="inicio">
+<!-- Ambient glowing subtle gradient blob -->
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-secondary-container/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" style="animation-duration: 6s;"></div>
+<div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-space-xl items-center">
+<!-- Hero Text & Conversational Hooks -->
+<div class="lg:col-span-6 flex flex-col items-start space-y-space-md text-left z-10 reveal-init delay-100 reveal-visible">
+<!-- Top Badge -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-secondary-container/30 text-secondary font-label-md text-label-md tracking-wide shadow-sm hover:bg-secondary-container/40 transition-colors">
+<span class="material-symbols-outlined text-[16px] text-secondary animate-spin" style="animation-duration: 8s; font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="">REPOSTERÍA ARTESANAL HECHA CON AMOR EN CALI</span>
+</div>
+<!-- Main Serif Headline -->
+<h1 class="font-display-lg text-display-lg-mobile lg:text-display-lg text-primary tracking-tight font-medium leading-[1.12]">
+            El detalle perfecto <br class="hidden sm:inline">hecho postre en Cali.
+          </h1>
+<!-- Sensory Subtitle -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+            Repostería artesanal de calidad prémium con empaques personalizados listos para sorprender, consentirte y celebrar cualquier instante memorable en la Sucursal del Cielo.
+          </p>
+<!-- Direct CTAs -->
+<div class="pt-space-xs flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm w-full sm:w-auto">
+<a class="interactive-btn inline-flex items-center justify-center gap-space-xs bg-primary-container text-on-primary hover:bg-primary px-space-lg py-3.5 rounded-full font-label-lg text-label-lg shadow-[0_8px_24px_-4px_rgba(66,37,24,0.3)] group" href="https://wa.me/573000000000?text=%C2%A1Hola%20Dali%27s%20Bakery!%20Quiero%20hacer%20un%20pedido%20especial%20y%20conocer%20la%20disponibilidad%20de%20hoy" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px] text-tertiary-fixed">chat</span>
+<span class="">Haz tu pedido en WhatsApp</span>
+<span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+<a class="interactive-btn inline-flex items-center justify-center gap-space-xs bg-surface-container-lowest text-primary hover:bg-surface-container px-space-lg py-3.5 rounded-full font-label-lg text-label-lg shadow-sm" href="#catalogo">
+<span class="material-symbols-outlined text-[18px] text-secondary">lunch_dining</span>
+<span class="">Explorar Antojos</span>
+</a>
+</div>
+<!-- Trust Badges Bar -->
+<div class="pt-space-md grid grid-cols-1 sm:grid-cols-3 gap-space-sm w-full">
+<div class="flex items-center gap-space-xs bg-surface-container-lowest/80 px-space-sm py-2 rounded-lg shadow-sm hover:scale-[1.03] transition-transform">
+<span class="material-symbols-outlined text-[20px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">100% Ingredientes Naturales</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-lowest/80 px-space-sm py-2 rounded-lg shadow-sm hover:scale-[1.03] transition-transform">
+<span class="material-symbols-outlined text-[20px] text-secondary" style="font-variation-settings: 'FILL' 1;">featured_seasonal_and_gifts</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Empaques de Regalo</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-lowest/80 px-space-sm py-2 rounded-lg shadow-sm hover:scale-[1.03] transition-transform">
+<span class="material-symbols-outlined text-[20px] text-secondary" style="font-variation-settings: 'FILL' 1;">two_wheeler</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Envíos en todo Cali</span>
+</div>
+</div>
+</div>
+<!-- Visual Showcase Hero Grid -->
+<div class="lg:col-span-6 relative mt-space-lg lg:mt-0 reveal-init delay-200 reveal-visible">
+<div class="grid grid-cols-12 gap-space-sm relative">
+<!-- Main Cake Card -->
+<div class="col-span-8 rounded-lg overflow-hidden shadow-xl bg-surface-container-lowest relative group">
+<img alt="Torta de Autor Dali's Bakery" class="w-full h-80 lg:h-96 object-cover transform transition-transform duration-700 group-hover:scale-105" data-alt="Exquisite artisanal double layer celebratory cake decorated with edible organic rose petals, fresh plump blackberries, and velvety cream frosting on a ceramic pedestal table in warm morning Cali daylight with soft golden bakery studio atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFU_mqEII3MYubZqYm3XJi7JnDtdIieFN-xCiBef-v8d5rqsN6AorcyaVLJrM-tUkMfCRY_HDkAWTn0-UOWqoIIxQIJkCkjfyvBtXHY96uORWJTdx2wox6Kp8Vy-hn0yqsoDtSRHKskCWcAgKcZ8XnQWVSuf6NagSlIosHBwc5CIui7w1wHokzzVE37e__V8V2rjc1wTzafWkabC_eJ-X7VYVOibkb8EQC2WRqFxrlNNfipr-uG_34">
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/95 backdrop-blur-sm px-space-md py-1.5 rounded-full shadow-sm flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-ping"></span>
+<span class="font-label-sm text-label-sm text-primary font-bold">Horneado Hoy en Cali</span>
+</div>
+</div>
+<!-- Side Postres Stack -->
+<div class="col-span-4 flex flex-col gap-space-sm">
+<!-- Alfajores Photo -->
+<div class="rounded-lg overflow-hidden shadow-md bg-surface-container-lowest group relative">
+<img alt="Alfajores Artesanales" class="w-full h-36 lg:h-44 object-cover transform transition-transform duration-500 group-hover:scale-105" data-alt="Close up artisanal South American alfajores filled with thick golden dulce de leche arequipe and dusted with powdered white sugar resting on warm linen cloth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVXY0pUWhc3dCaGL4VmY9A6TvrSDSoLN-NGMVvCLd4XW8jJwyiJ37jCW2RiADzBenW-LDqGy_tfiJmXsxfkAOAjdCpNOCamcl7Rc6YdkBd8OnpPIARQLsxNR-_bDb6j2Ictw0KpORkByRzi6va5mfBzD9qNqay1KqQpPVtKRYzA8cQ26WnBgrM1OKAiCcGL_Rto2SoDHv2qsi2ifFc60M6K7ohHrEoVhhV4EN-VG_UDMMZhk8yWo45">
+<span class="absolute top-2 right-2 bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-label-sm text-label-sm font-semibold shadow-sm">Favorito</span>
+</div>
+<!-- Cinnamon Rolls Photo -->
+<div class="rounded-lg overflow-hidden shadow-md bg-surface-container-lowest group relative">
+<img alt="Rollos de Canela Frescos" class="w-full h-40 lg:h-48 object-cover transform transition-transform duration-500 group-hover:scale-105" data-alt="Gourmet cinnamon rolls warm out of the oven coated in a glossy vanilla cream cheese glaze with cinnamon spice swirls visible on rustic wood board" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3-lcIbqPrxPEkHWzzsC39-hbjw82CR2aoHyD0_-DkV949qZnDtzaRm9bTT7bAPqQZ2Ncm0LqZNHlqo4tG87vCOvMwqUZyq7PpVFwti1VdNLm1692Lv0zDOapNdOBWYiy0XpAWA5xPGp-eMs_YE_wsB9nxxBKvR5sxPZKBTiXYNzRg6vAwAlxvqASu5M7DAEyJ915HYmkDKlT4OknVuAi_olv6iRLMJ4RWlzr15X9dYO5sQ5TT021Z">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent flex items-end p-2.5">
+<span class="text-on-primary font-label-sm text-label-sm font-medium">Glaseado Perfecto</span>
+</div>
+</div>
+</div>
+<!-- Floating Badge for Milhojas Overlay -->
+<div class="absolute -bottom-5 left-8 bg-surface-container-lowest px-space-md py-space-sm rounded-xl shadow-lg flex items-center gap-space-sm z-20 animate-float">
+<div class="w-11 h-11 rounded-full bg-secondary-container/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">cake</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-none">Clientes Felices</p>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">+2,400</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">momentos dulces</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECCIÓN 1: NUESTRA PROPUESTA DE VALOR (#propuesta)
+       ========================================================================= -->
+<section class="w-full py-space-xl lg:py-24 bg-surface-container-low relative" id="propuesta">
+<div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin">
+<!-- Section Header -->
+<div class="max-w-2xl mx-auto text-center space-y-space-xs mb-space-xl reveal-init reveal-visible">
+<span class="font-label-md text-label-md text-secondary font-bold tracking-wider uppercase">Nuestra Filosofía Culinaria</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Tradición, dulzura y el arte de regalar</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">¿Por qué elegir Dalis Bakery para convertir un día común en una fecha inolvidable?</p>
+</div>
+<!-- 2 Main Value Blocks -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg lg:gap-space-xl">
+<!-- Block 1: Repostería 100% Artesanal -->
+<div class="value-card bg-surface-container-lowest p-space-lg lg:p-space-xl rounded-lg shadow-sm flex flex-col justify-between group border border-transparent hover:border-secondary-container/50 reveal-init delay-100 reveal-visible">
+<div class="space-y-space-md">
+<div class="w-14 h-14 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[32px] icon-bounce">cookie</span>
+</div>
+<div class="space-y-space-xs">
+<h3 class="font-headline-md text-headline-md text-primary">Repostería 100% Artesanal</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Elaborada con ingredientes de calidad prémium para el antojo diario o tus momentos especiales. Sin premezclas industriales ni conservantes artificiales. El sabor auténtico de la tradición repostera casera e insumos tradicionales de la gastronomía vallecaucana como el auténtico manjar blanco y frutas exóticas de nuestra región.</p>
+</div>
+<!-- Visual pill tags -->
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="px-space-sm py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-primary transition-colors hover:bg-secondary-container/40">Mantequilla Pura 100%</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-primary transition-colors hover:bg-secondary-container/40">Horneado Diario</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-primary transition-colors hover:bg-secondary-container/40">Cero Conservantes</span>
+</div>
+</div>
+<div class="mt-space-lg rounded-xl overflow-hidden h-48 relative">
+<img alt="Elaboración artesanal en Cali" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" data-alt="Artisan baker hand dusting golden butter cookies and delicate pastries on a warm kitchen marble counter with natural baking ingredients" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR_B9sPIe_L_s6AuroRrJXwxxamkZqJvXMZeS4mL9PtjrZvQVfDnxTXRLCL1awUTpU5WlkNg7a9J8_Eue6ALOGfyV4CrKHZWTmGL0RswCaxaxr0oJcO0-92IajInKVH1CKeLNz_ijRxsNnVPWc-7FT4hsIUnrJ-rQtgklerY4J7cp_wdw8BtINK7b684h9z9Wigo3rwitd7zg7R9J2QpOG-QDyYljWEul6HhD32yjY3ZhyLzgoItL2">
+</div>
+</div>
+<!-- Block 2: Empaques Personalizados -->
+<div class="value-card bg-surface-container-lowest p-space-lg lg:p-space-xl rounded-lg shadow-sm flex flex-col justify-between group border border-transparent hover:border-secondary-container/50 reveal-init delay-200 reveal-visible">
+<div class="space-y-space-md">
+<div class="w-14 h-14 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[32px] icon-bounce">redeem</span>
+</div>
+<div class="space-y-space-xs">
+<h3 class="font-headline-md text-headline-md text-primary">Empaques Personalizados</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Transformamos cada postre en un regalo único para expresar afecto, agradecer o compartir en eventos. Cajas de diseño editorial con lazos de seda, tarjetas caligráficas con mensajes personalizados y detalles que enamoran a primera vista antes del primer bocado.
+              </p>
+</div>
+<!-- Visual pill tags -->
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="px-space-sm py-1 rounded-full bg-secondary-container/30 font-label-sm text-label-sm text-secondary font-semibold transition-colors hover:bg-secondary-container/50">Lazo de Seda Incluido</span>
+<span class="px-space-sm py-1 rounded-full bg-secondary-container/30 font-label-sm text-label-sm text-secondary font-semibold transition-colors hover:bg-secondary-container/50">Tarjeta con Tu Mensaje</span>
+<span class="px-space-sm py-1 rounded-full bg-secondary-container/30 font-label-sm text-label-sm text-secondary font-semibold transition-colors hover:bg-secondary-container/50">Cajas Rígidas Prémium</span>
+</div>
+</div>
+<div class="mt-space-lg rounded-xl overflow-hidden h-48 relative">
+<img alt="Cajas de regalo Dali's Bakery" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" data-alt="Luxury bakery gift packaging box tied with delicate silk peach ribbon with custom calligraphy greeting card surrounded by handcrafted pastries" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWPCr2S2vcAEXtxxSxFtWdBdsS9imwPnC5tEAqTajpOQTWfYb2hVBu_DyEBPqRPxt3rAUbdmqLCoheLmzHr3jeNMs49NWsjch68A2GPHMQhCZWzTVSbEj1LedkPjjwY11qJtYWVlorrvMlrzS0U4TE8EiVW96hJ3Ez0LJOcco7OkI7LnxuQV26_N4GyEFzWbaQHL1cm0KKOqCaA30YKPF8fxZkAvqu0dU3QCsxn4reET_dcIMUNOlg">
+</div>
+</div>
+</div>
+<!-- Mini Banner Interactivo WhatsApp Idea -->
+<div class="mt-space-xl bg-surface-container-lowest p-space-lg rounded-lg shadow-sm flex flex-col sm:flex-row items-center justify-between gap-space-md border border-outline-variant/30 reveal-init delay-300 hover:border-secondary-container/80 transition-colors reveal-visible">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-secondary-container/40 flex-shrink-0 flex items-center justify-center text-secondary group">
+<span class="material-symbols-outlined text-[26px] icon-bounce">draw</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary font-semibold">¿Tienes una idea o temática en mente?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pregunta por nuestra asesoría personalizada sin costo adicional para cajas temáticas.</p>
+</div>
+</div>
+<a class="interactive-btn flex-shrink-0 inline-flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary px-space-md py-2.5 rounded-full font-label-md text-label-md shadow-sm" href="https://wa.me/573000000000?text=%C2%A1Hola!%20Tengo%20una%20idea%20especial%20para%20un%20postre%20o%20regalo%20personalizado,%20%C2%BFme%20pueden%20asesorar?" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed">chat</span>
+<span class="">Pedir asesoría personalizada</span>
+</a>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECCIÓN 2: CATÁLOGO DE PRODUCTOS - MENÚ VISUAL (#catalogo)
+       ========================================================================= -->
+<section class="w-full py-space-xl lg:py-28 bg-background" id="catalogo">
+<div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg reveal-init reveal-visible">
+<div class="space-y-space-xs">
+<span class="font-label-md text-label-md text-secondary font-bold tracking-wider uppercase">Menú de Temporada</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Nuestros Antojos Favoritos</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">Recién horneados todos los días en nuestra cocina artesanal en Cali con ingredientes 100% naturales.</p>
+</div>
+<!-- Filter Chips Selector -->
+<div class="flex flex-wrap gap-space-xs" id="catalog-filters">
+<button class="filter-btn active-filter interactive-btn px-space-md py-1.5 rounded-full font-label-sm text-label-sm bg-primary-container text-on-primary transition-all shadow-sm" data-filter="all" type="button">Todos</button>
+<button class="filter-btn interactive-btn px-space-md py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-primary hover:bg-surface-container transition-all" data-filter="regalo" type="button">Para Regalar</button>
+<button class="filter-btn interactive-btn px-space-md py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-primary hover:bg-surface-container transition-all" data-filter="celebracion" type="button">Tortas &amp; Celebración</button>
+<button class="filter-btn interactive-btn px-space-md py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-primary hover:bg-surface-container transition-all" data-filter="diario" type="button">Antojos Diarios</button>
+</div>
+</div>
+<!-- Products Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter lg:gap-space-lg" id="products-grid"><!-- 1. Alfajores Artesanales -->
+<article class="product-card bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm flex flex-col justify-between group reveal-init delay-100 reveal-visible" data-category="regalo diario" data-name="Alfajores Artesanales">
+  <div>
+    <div class="relative h-56 overflow-hidden bg-surface-container">
+      <img alt="Alfajores Artesanales con Arequipe" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoAmNWwfc76nejxbHOQcUSUY0tpwOty4oFnhSpn-q4szqCy75RMDcCXwNuHZIv3FBvk2aUtBxYmBHKTvp4gGfYuzYYR6pDHUvpngXynQEEDUuZjIlko7sxSchEiGK0E4kGxl3RSZUikQVCdsXXfxbrusop5MbJIYtTsfI4ZPjr7PYbWbBlBSIdsC3mvKVH5hRggBX5DAd0JajFz_nwz3f8caN9MyjpK8ZGC0hwyYaC0ke5JnlbMzdB">
+      <span class="absolute top-3 left-3 bg-secondary-container/90 backdrop-blur-sm text-on-secondary-container font-label-sm text-label-sm font-bold px-3 py-1 rounded-full shadow-sm">Más Vendido</span>
+      <div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-primary font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+        <span class="">Listo para regalar 🎁</span>
+      </div>
+    </div>
+    <div class="p-space-md space-y-space-sm">
+      <div class="flex items-center justify-between">
+        <h3 class="font-headline-sm text-headline-sm text-primary font-bold">Alfajores Artesanales</h3>
+        <span class="font-headline-sm text-headline-sm text-secondary font-bold">$24.000</span>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">
+        Rellenos de abundante manjar blanco casero y fécula de maíz suave que se deshace en la boca.
+      </p>
+
+      <!-- Selector de Presentación / Tamaño -->
+      <div class="space-y-1 pt-1">
+        <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px] text-secondary">inventory_2</span> Presentación:
+        </span>
+        <div class="grid grid-cols-2 gap-1.5">
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-secondary text-secondary bg-secondary-container/30 font-label-sm text-label-sm font-bold transition-all text-center">
+            Caja x6 ($24k)
+          </button>
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm transition-all text-center">
+            Caja x12 ($44k)
+          </button>
+        </div>
+      </div>
+
+      <!-- Selector de Cantidad & Envíos -->
+      <div class="flex items-center justify-between pt-1 gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-label-sm text-label-sm text-primary font-semibold">Cantidad:</span>
+          <div class="flex items-center bg-surface-container rounded-full p-0.5 border border-outline-variant/30">
+            <button type="button" aria-label="Disminuir" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">-</button>
+            <span class="px-2.5 font-label-sm text-label-sm font-bold text-primary">1</span>
+            <button type="button" aria-label="Aumentar" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">+</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] font-label-sm text-secondary bg-secondary-container/20 px-2 py-1 rounded-full">
+          <span class="material-symbols-outlined text-[14px]">two_wheeler</span> Cali Express
+        </div>
+      </div>
+
+      <!-- Opciones de Entrega y Métodos de Pago -->
+      <div class="pt-1 border-t border-outline-variant/30 flex flex-col gap-1 text-[11px] font-label-sm text-on-surface-variant">
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">payments</span> Pago: Nequi, Daviplata, Bancolombia</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">local_shipping</span> Entrega: Domicilio Cali&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-space-md pt-0"><a class="product-order-btn interactive-btn w-full inline-flex items-center justify-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary py-2.5 rounded-full font-label-md text-label-md shadow-sm group" data-item="Alfajores Artesanales (Caja x6)" href="#checkout"><span class="material-symbols-outlined text-[18px] text-tertiary-fixed">payments</span><span class="">Comprar y Pagar ahora</span></a><div class="flex items-center justify-center gap-1 text-[11px] font-label-sm text-on-surface-variant pt-1"><span class="material-symbols-outlined text-[13px] text-[#25D366]">lock</span><span class="">Pasarela Segura (Wompi, Nequi, Tarjeta)</span></div></div>
+</article>
+
+<!-- 2. Tortas Personalizadas -->
+<article class="product-card bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm flex flex-col justify-between group reveal-init delay-200 reveal-visible" data-category="celebracion regalo" data-name="Tortas Personalizadas">
+  <div>
+    <div class="relative h-56 overflow-hidden bg-surface-container">
+      <img alt="Tortas Personalizadas Cali" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZfhnyDS_JPpmcbV4rMGQrgvMn5r8lgbPwUd2_ucu3YzzMJeqT-TZTm3bozXKXFbFnnovLRXZxmXLiwMcOejt0cSVCA-1JtWG1dj5PW5iB29CeGU0TWPA24izqEvdU-q3gJbht1F1Pa89XkrFnZh5cfW3RW-K2ZQXlkBlZEGQwzzeYQTSRQJm_-nIDF29kk8oxfb2wVtoLh55199qOULwW2bKNLlnTvnkuTT1_dsZXBCysURjT3fYK">
+      <span class="absolute top-3 left-3 bg-secondary-container/90 backdrop-blur-sm text-on-secondary-container font-label-sm text-label-sm font-bold px-3 py-1 rounded-full shadow-sm">Celebración</span>
+      <div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-primary font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+        <span class="">Diseño a la medida ✨</span>
+      </div>
+    </div>
+    <div class="p-space-md space-y-space-sm">
+      <div class="flex items-center justify-between">
+        <h3 class="font-headline-sm text-headline-sm text-primary font-bold">Tortas Tradicionales</h3>
+        <span class="font-headline-sm text-headline-sm text-secondary font-bold">Desde $65.000</span>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">
+        Zanahoria &amp; Nuez, Lulada, Red Velvet, Chocolate o Limón con topper personalizado.
+      </p>
+
+      <!-- Selector de Porciones / Tamaño -->
+      <div class="space-y-1 pt-1">
+        <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px] text-secondary">cake</span> Porciones:
+        </span>
+        <div class="grid grid-cols-2 gap-1.5">
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-secondary text-secondary bg-secondary-container/30 font-label-sm text-label-sm font-bold transition-all text-center">
+            8-10 Porciones
+          </button>
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm transition-all text-center">
+            15-20 Porciones
+          </button>
+        </div>
+      </div>
+
+      <!-- Selector de Cantidad & Envíos -->
+      <div class="flex items-center justify-between pt-1 gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-label-sm text-label-sm text-primary font-semibold">Tortas:</span>
+          <div class="flex items-center bg-surface-container rounded-full p-0.5 border border-outline-variant/30">
+            <button type="button" aria-label="Disminuir" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">-</button>
+            <span class="px-2.5 font-label-sm text-label-sm font-bold text-primary">1</span>
+            <button type="button" aria-label="Aumentar" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">+</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] font-label-sm text-secondary bg-secondary-container/20 px-2 py-1 rounded-full">
+          <span class="material-symbols-outlined text-[14px]">event</span> Programado
+        </div>
+      </div>
+
+      <!-- Opciones de Entrega y Métodos de Pago -->
+      <div class="pt-1 border-t border-outline-variant/30 flex flex-col gap-1 text-[11px] font-label-sm text-on-surface-variant">
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">payments</span> Pago: Nequi, Daviplata, Bancolombia</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">local_shipping</span> Entrega: Transporte especializado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-space-md pt-0"><a class="product-order-btn interactive-btn w-full inline-flex items-center justify-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary py-2.5 rounded-full font-label-md text-label-md shadow-sm group" data-item="Torta Tradicional (8-10 porciones)" href="#checkout"><span class="material-symbols-outlined text-[18px] text-tertiary-fixed">credit_card</span><span class="">Reservar y Pagar en línea</span></a><div class="flex items-center justify-center gap-1 text-[11px] font-label-sm text-on-surface-variant pt-1"><span class="material-symbols-outlined text-[13px] text-[#25D366]">lock</span><span class="">Pasarela Segura (Wompi, Nequi, Tarjeta)</span></div></div>
+</article>
+
+<!-- 3. Galletas de Mantequilla -->
+<article class="product-card bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm flex flex-col justify-between group reveal-init delay-300 reveal-visible" data-category="regalo diario" data-name="Galletas de Mantequilla">
+  <div>
+    <div class="relative h-56 overflow-hidden bg-surface-container">
+      <img alt="Galletas de Mantequilla" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUpP5ITnpramx9e-iK_q9bijjGRqirDtG4jO262g1i9grjenpmchSUJhhaFz5yLyriRbYdWazqwmqRT8KaMb96ekbDdUh1OdK8VU1IUMi-kmWQ47obG44PSo45gwLndNH19hlx6i6XX50L8Vmnwh7vrmupMUcgtoO2AfCZ1aHvt4nMUkA-3RKBwukUw_MC8rQKTmAiVpzsTSHwKyw83fZbF3-T2kD11FFQkJStk_GsVkYRM3f0GEkB">
+      <span class="absolute top-3 left-3 bg-secondary-container/90 backdrop-blur-sm text-on-secondary-container font-label-sm text-label-sm font-bold px-3 py-1 rounded-full shadow-sm">Ideal para Regalar</span>
+      <div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-primary font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+        <span class="">Listo para regalar 🎁</span>
+      </div>
+    </div>
+    <div class="p-space-md space-y-space-sm">
+      <div class="flex items-center justify-between">
+        <h3 class="font-headline-sm text-headline-sm text-primary font-bold">Galletas de Mantequilla</h3>
+        <span class="font-headline-sm text-headline-sm text-secondary font-bold">$20.000</span>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">
+        Tradición horneada con mantequilla pura, aroma a Café Colombiano y crocancia perfecta.
+      </p>
+
+      <!-- Selector de Presentación / Tamaño -->
+      <div class="space-y-1 pt-1">
+        <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px] text-secondary">cookie</span> Presentación:
+        </span>
+        <div class="grid grid-cols-2 gap-1.5">
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-secondary text-secondary bg-secondary-container/30 font-label-sm text-label-sm font-bold transition-all text-center">
+            Caja x8 ($20k)
+          </button>
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm transition-all text-center">
+            Caja x16 ($36k)
+          </button>
+        </div>
+      </div>
+
+      <!-- Selector de Cantidad & Envíos -->
+      <div class="flex items-center justify-between pt-1 gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-label-sm text-label-sm text-primary font-semibold">Cantidad:</span>
+          <div class="flex items-center bg-surface-container rounded-full p-0.5 border border-outline-variant/30">
+            <button type="button" aria-label="Disminuir" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">-</button>
+            <span class="px-2.5 font-label-sm text-label-sm font-bold text-primary">1</span>
+            <button type="button" aria-label="Aumentar" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">+</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] font-label-sm text-secondary bg-secondary-container/20 px-2 py-1 rounded-full">
+          <span class="material-symbols-outlined text-[14px]">two_wheeler</span> Cali Express
+        </div>
+      </div>
+
+      <!-- Opciones de Entrega y Métodos de Pago -->
+      <div class="pt-1 border-t border-outline-variant/30 flex flex-col gap-1 text-[11px] font-label-sm text-on-surface-variant">
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">payments</span> Pago: Nequi, Daviplata, Bancolombia</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">local_shipping</span> Entrega: Domicilio Cali&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-space-md pt-0"><a class="product-order-btn interactive-btn w-full inline-flex items-center justify-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary py-2.5 rounded-full font-label-md text-label-md shadow-sm group" data-item="Galletas de Mantequilla (Caja x8)" href="#checkout"><span class="material-symbols-outlined text-[18px] text-tertiary-fixed">shopping_bag</span><span class="">Comprar y Pagar ahora</span></a><div class="flex items-center justify-center gap-1 text-[11px] font-label-sm text-on-surface-variant pt-1"><span class="material-symbols-outlined text-[13px] text-[#25D366]">lock</span><span class="">Pasarela Segura (Wompi, Nequi, Tarjeta)</span></div></div>
+</article>
+
+<!-- 4. Mil Hojas -->
+<article class="product-card bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm flex flex-col justify-between group reveal-init delay-100 reveal-visible" data-category="diario regalo" data-name="Mil Hojas Tradicional">
+  <div>
+    <div class="relative h-56 overflow-hidden bg-surface-container">
+      <img alt="Mil Hojas Tradicional" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRQ8VYf8U6hN5-6Vc3eH6t3Bhb5viLZUywdBPk5dGBdOsdMagLtILHTjkM8jTA4n7ffs5nmJNh8MoMEMmmB_rmHI57vTBOjEJ-2wfjoDY72DJ12A3ZTo8_9gM9hnW7cUOfdq9KbAExS_6zvwzkJx8nXGgUstH-Akxo6ZPT9HcKKFZ-vZ-RUEO3XViAY_glZs4SaI6kHYhTv9ghVXB5zu1x4g5fZe5c4iRQmLOcn3YGZyzB2YZmta1K">
+      <span class="absolute top-3 left-3 bg-secondary-container/90 backdrop-blur-sm text-on-secondary-container font-label-sm text-label-sm font-bold px-3 py-1 rounded-full shadow-sm">Tradición Caleña</span>
+      <div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-primary font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+        <span class="">Crujiente &amp; Fresco 🥐</span>
+      </div>
+    </div>
+    <div class="p-space-md space-y-space-sm">
+      <div class="flex items-center justify-between">
+        <h3 class="font-headline-sm text-headline-sm text-primary font-bold">Mil Hojas Tradicional</h3>
+        <span class="font-headline-sm text-headline-sm text-secondary font-bold">$18.000</span>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">
+        Crujiente hojaldre artesanal con crema pastelera de vainilla y manjar blanco recién hecho.
+      </p>
+
+      <!-- Selector de Presentación / Tamaño -->
+      <div class="space-y-1 pt-1">
+        <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px] text-secondary">layers</span> Presentación:
+        </span>
+        <div class="grid grid-cols-2 gap-1.5">
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-secondary text-secondary bg-secondary-container/30 font-label-sm text-label-sm font-bold transition-all text-center">
+            Individual ($18k)
+          </button>
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm transition-all text-center">
+            Dúo Pack ($32k)
+          </button>
+        </div>
+      </div>
+
+      <!-- Selector de Cantidad & Envíos -->
+      <div class="flex items-center justify-between pt-1 gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-label-sm text-label-sm text-primary font-semibold">Cantidad:</span>
+          <div class="flex items-center bg-surface-container rounded-full p-0.5 border border-outline-variant/30">
+            <button type="button" aria-label="Disminuir" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">-</button>
+            <span class="px-2.5 font-label-sm text-label-sm font-bold text-primary">1</span>
+            <button type="button" aria-label="Aumentar" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">+</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] font-label-sm text-secondary bg-secondary-container/20 px-2 py-1 rounded-full">
+          <span class="material-symbols-outlined text-[14px]">two_wheeler</span> Cali Express
+        </div>
+      </div>
+
+      <!-- Opciones de Entrega y Métodos de Pago -->
+      <div class="pt-1 border-t border-outline-variant/30 flex flex-col gap-1 text-[11px] font-label-sm text-on-surface-variant">
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">payments</span> Pago: Nequi, Daviplata, Bancolombia</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">local_shipping</span> Entrega: Domicilio Cali&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-space-md pt-0"><a class="product-order-btn interactive-btn w-full inline-flex items-center justify-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary py-2.5 rounded-full font-label-md text-label-md shadow-sm group" data-item="Mil Hojas Tradicional (Individual)" href="#checkout"><span class="material-symbols-outlined text-[18px] text-tertiary-fixed">payments</span><span class="">Comprar y Pagar ahora</span></a><div class="flex items-center justify-center gap-1 text-[11px] font-label-sm text-on-surface-variant pt-1"><span class="material-symbols-outlined text-[13px] text-[#25D366]">lock</span><span class="">Pasarela Segura (Wompi, Nequi, Tarjeta)</span></div></div>
+</article>
+
+<!-- 5. Rollos de Canela -->
+<article class="product-card bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm flex flex-col justify-between group reveal-init delay-200 reveal-visible" data-category="diario" data-name="Rollos de Canela">
+  <div>
+    <div class="relative h-56 overflow-hidden bg-surface-container">
+      <img alt="Rollos de Canela Glaseados" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArOQ8mHACVmSdsRIJx7WcDBpfeyGRmHugFoN6qVXcizg5fcca1Ul1uYGk8amtElL9EKn6oxrh7MuxSaOk_e2TP2t7pmbagnRKhL8sU3jr7-3oiJL-MY2O8rpAkvkCf8YHAWNIsOImU2guF_Ls3eBNGF9azSotOiqXluuY5uyvw4NtvC_6UAdzKjK3dwsWceqALE66awsdydr5o6hdxlVDM6DizSZ30VDi-ANIfeOSKlXZMoIZOs6DT">
+      <span class="absolute top-3 left-3 bg-secondary-container/90 backdrop-blur-sm text-on-secondary-container font-label-sm text-label-sm font-bold px-3 py-1 rounded-full shadow-sm">Favorito de la Tarde</span>
+      <div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-primary font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+        <span class="">Tibio &amp; Esponjoso ☕</span>
+      </div>
+    </div>
+    <div class="p-space-md space-y-space-sm">
+      <div class="flex items-center justify-between">
+        <h3 class="font-headline-sm text-headline-sm text-primary font-bold">Rollos de Canela</h3>
+        <span class="font-headline-sm text-headline-sm text-secondary font-bold">$16.000</span>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">
+        Esponjosos con glaseado cremoso de vainilla, canela de Ceilán y azúcar morena aromática.
+      </p>
+
+      <!-- Selector de Presentación / Tamaño -->
+      <div class="space-y-1 pt-1">
+        <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px] text-secondary">bakery_dining</span> Presentación:
+        </span>
+        <div class="grid grid-cols-2 gap-1.5">
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-secondary text-secondary bg-secondary-container/30 font-label-sm text-label-sm font-bold transition-all text-center">
+            Dúo Pack x2 ($16k)
+          </button>
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm transition-all text-center">
+            Caja x4 ($30k)
+          </button>
+        </div>
+      </div>
+
+      <!-- Selector de Cantidad & Envíos -->
+      <div class="flex items-center justify-between pt-1 gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-label-sm text-label-sm text-primary font-semibold">Cantidad:</span>
+          <div class="flex items-center bg-surface-container rounded-full p-0.5 border border-outline-variant/30">
+            <button type="button" aria-label="Disminuir" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">-</button>
+            <span class="px-2.5 font-label-sm text-label-sm font-bold text-primary">1</span>
+            <button type="button" aria-label="Aumentar" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">+</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] font-label-sm text-secondary bg-secondary-container/20 px-2 py-1 rounded-full">
+          <span class="material-symbols-outlined text-[14px]">two_wheeler</span> Cali Express
+        </div>
+      </div>
+
+      <!-- Opciones de Entrega y Métodos de Pago -->
+      <div class="pt-1 border-t border-outline-variant/30 flex flex-col gap-1 text-[11px] font-label-sm text-on-surface-variant">
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">payments</span> Pago: Nequi, Daviplata, Bancolombia</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">local_shipping</span> Entrega: Domicilio Cali&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-space-md pt-0"><a class="product-order-btn interactive-btn w-full inline-flex items-center justify-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary py-2.5 rounded-full font-label-md text-label-md shadow-sm group" data-item="Rollos de Canela (Dúo Pack)" href="#checkout"><span class="material-symbols-outlined text-[18px] text-tertiary-fixed">shopping_bag</span><span class="">Comprar y Pagar ahora</span></a><div class="flex items-center justify-center gap-1 text-[11px] font-label-sm text-on-surface-variant pt-1"><span class="material-symbols-outlined text-[13px] text-[#25D366]">lock</span><span class="">Pasarela Segura (Wompi, Nequi, Tarjeta)</span></div></div>
+</article>
+
+<!-- 6. Caja Degustación Especial -->
+<article class="product-card bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm flex flex-col justify-between group reveal-init delay-300 reveal-visible" data-category="regalo celebracion" data-name="Caja Sorpresa Surtida">
+  <div>
+    <div class="relative h-56 overflow-hidden bg-surface-container">
+      <img alt="Caja Regalo Sorpresa Dali's Bakery" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwi5ip48hutPBiukulMdCimOW8L6BBlXqlgdzSoe62qfN7JL1mowIaYFGtraSZ9XMvXH9cgxPAOBPHG0QPAhyBzVvn2sMWFqstOM8g4zCWf5jJgnzWaSbV_V4PgBx_o0ngBepUFX-RrWzv6ZJH16t40TqoMH9Q7aQ4MQoOqqAfi0iIb_0dqzTZG0E7nfSbgFkpVIwR3zTKnyS3MryG9FgoVcsxk62fYZePjKZS4CJadC_b8vMqpLNG">
+      <span class="absolute top-3 left-3 bg-secondary-container/90 backdrop-blur-sm text-on-secondary-container font-label-sm text-label-sm font-bold px-3 py-1 rounded-full shadow-sm">Edición Especial</span>
+      <div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-primary font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+        <span class="">Listo para regalar 🎁</span>
+      </div>
+    </div>
+    <div class="p-space-md space-y-space-sm">
+      <div class="flex items-center justify-between">
+        <h3 class="font-headline-sm text-headline-sm text-primary font-bold">Caja Sorpresa Surtida</h3>
+        <span class="font-headline-sm text-headline-sm text-secondary font-bold">$42.000</span>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">
+        4 alfajores, 4 galletas de mantequilla y 4 mini bocados en caja de regalo rígida con lazo.
+      </p>
+
+      <!-- Selector de Presentación / Tamaño -->
+      <div class="space-y-1 pt-1">
+        <span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px] text-secondary">featured_seasonal_and_gifts</span> Empaque:
+        </span>
+        <div class="grid grid-cols-2 gap-1.5">
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-secondary text-secondary bg-secondary-container/30 font-label-sm text-label-sm font-bold transition-all text-center">
+            Estándar ($42k)
+          </button>
+          <button type="button" class="px-2.5 py-1.5 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm transition-all text-center">
+            Prémium Seda ($52k)
+          </button>
+        </div>
+      </div>
+
+      <!-- Selector de Cantidad & Envíos -->
+      <div class="flex items-center justify-between pt-1 gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-label-sm text-label-sm text-primary font-semibold">Cajas:</span>
+          <div class="flex items-center bg-surface-container rounded-full p-0.5 border border-outline-variant/30">
+            <button type="button" aria-label="Disminuir" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">-</button>
+            <span class="px-2.5 font-label-sm text-label-sm font-bold text-primary">1</span>
+            <button type="button" aria-label="Aumentar" class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:bg-secondary-container/40 text-sm font-bold shadow-sm transition-colors">+</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] font-label-sm text-secondary bg-secondary-container/20 px-2 py-1 rounded-full">
+          <span class="material-symbols-outlined text-[14px]">card_giftcard</span> Con Dedicatoria
+        </div>
+      </div>
+
+      <!-- Opciones de Entrega y Métodos de Pago -->
+      <div class="pt-1 border-t border-outline-variant/30 flex flex-col gap-1 text-[11px] font-label-sm text-on-surface-variant">
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">payments</span> Pago: Nequi, Daviplata, Bancolombia</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">local_shipping</span> Entrega: Domicilio sorpresa&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-space-md pt-0"><a class="product-order-btn interactive-btn w-full inline-flex items-center justify-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary py-2.5 rounded-full font-label-md text-label-md shadow-sm group" data-item="Caja Sorpresa Surtida ($42.000)" href="#checkout"><span class="material-symbols-outlined text-[18px] text-tertiary-fixed">featured_seasonal_and_gifts</span><span class="">Comprar y Pagar regalo</span></a><div class="flex items-center justify-center gap-1 text-[11px] font-label-sm text-on-surface-variant pt-1"><span class="material-symbols-outlined text-[13px] text-[#25D366]">lock</span><span class="">Pasarela Segura (Wompi, Nequi, Tarjeta)</span></div></div>
+</article></div>
+</div>
+</section>
+<!-- =========================================================================
+       SECCIÓN 3: PENSADO PARA CADA MOMENTO (#personalizacion)
+       ========================================================================= -->
+<section class="w-full py-space-xl lg:py-24 bg-surface-container-low" id="personalizacion"><div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin"><div class="max-w-2xl mx-auto text-center space-y-space-xs mb-space-xl reveal-init reveal-visible"><span class="font-label-md text-label-md text-secondary font-bold tracking-wider uppercase">Arte en Cada Detalle y Empaque</span><h2 class="font-headline-lg text-headline-lg text-primary">Empaques Personalizados para Cada Motivo</h2><p class="font-body-md text-body-md text-on-surface-variant">Desde las grandes festividades del año y fechas de gratitud no comerciales, hasta la mejor excusa de todas: celebrar la vida cualquier día de la semana.</p></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg lg:gap-space-md"><div class="value-card bg-surface-container-lowest rounded-lg p-space-lg shadow-sm flex flex-col justify-between group border border-transparent hover:border-secondary-container/60 reveal-init delay-100 reveal-visible"><div class="space-y-space-md"><div class="flex items-center justify-between"><span class="px-space-sm py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-bold">Fechas Especiales de Siempre</span><span class="material-symbols-outlined text-[26px] text-secondary icon-bounce">featured_seasonal_and_gifts</span></div><div class="space-y-space-xs"><h3 class="font-headline-md text-headline-md text-primary">Festividades Tradicionales</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Empaques de gala con lazos de seda, tarjetas caligráficas exclusivas y detalles temáticos diseñados para celebrar momentos inolvidables en familia.</p></div><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-[#25D366]">check_circle</span><span class="">Diseños de temporada y lazos de seda premium</span></li><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-[#25D366]">check_circle</span><span class="">Tarjetas personalizadas con dedicatorias a mano</span></li><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-[#25D366]">check_circle</span><span class="">Cajas de distintos materiales&nbsp; para obsequios memorables</span></li></ul></div><div class="mt-space-lg space-y-space-md"><div class="rounded-xl overflow-hidden h-52 relative"><img alt="Festividades Tradicionales Dali's Bakery" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsyzqe2-thf_09lpuxwwr6XtHLHGl7sF1owMBQfHWXYRmfcERXWKCaS8xbhgPQhKKnpxrZtHMz0WEmuwySykEveADdagKYHbUGJ5_e2F_BN4cqPwzL1qetXzG0O4BkNTNyR2rUnuMIsosT2sJME1Qz0OkHtJDYglR_DrG7V2ljkaob5ACKEMZy8GBk39GrsQlA5rl_8gHPyBSG-7hqL4CClQaiHvKWOYlKd5eBT7D7B4UwudTnrCSifCPoAdOdVkan3Km3-Xjpaq2VrQk"></div><a class="interactive-btn w-full inline-flex items-center justify-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary py-3 rounded-full font-label-md text-label-md shadow-sm" href="https://wa.me/573000000000?text=%C2%A1Hola%20Dali%27s%20Bakery!%20Deseo%20personalizar%20un%20empaque%20para%20una%20festividad%20especial" rel="noopener noreferrer" target="_blank"><span class="">Personalizar para festividad</span><span class="material-symbols-outlined text-[18px]">redeem</span></a></div></div><div class="value-card bg-surface-container-lowest rounded-lg p-space-lg shadow-sm flex flex-col justify-between group border border-transparent hover:border-secondary-container/60 reveal-init delay-200 reveal-visible"><div class="space-y-space-md"><div class="flex items-center justify-between"><span class="px-space-sm py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-bold">Reconocimiento y Gratitud</span><span class="material-symbols-outlined text-[26px] text-secondary icon-bounce">workspace_premium</span></div><div class="space-y-space-xs"><h3 class="font-headline-md text-headline-md text-primary">Ocasiones No Comerciales</h3><p class="font-body-sm text-body-sm text-on-surface-variant">El detalle corporativo o personal perfecto para valorar a quienes hacen la diferencia: Día de la Secretaria, Maestro, compañeros de equipo o gratitud espontánea.</p></div><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-[#25D366]">check_circle</span><span class="">Opciones individuales o para equipos de trabajo</span></li><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-[#25D366]">check_circle</span><span class="">Mensajes corporativos o cálidos a la medida</span></li><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-[#25D366]">check_circle</span><span class="">Selección de milhojas, galletas de mantequilla y alfajores</span></li></ul></div><div class="mt-space-lg space-y-space-md"><div class="rounded-xl overflow-hidden h-52 relative"><img alt="Ocasiones Especiales y Gratitud" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDePe1FQROX-DVfIiInwTC_d7X5q-qbiyJfDp6Eg6ATlLhww52xdgGYlWddVjPXoxXSNtGFxp4RfAbCKTHMLa5yVV9bcle---TuNN5xw_jO-fKf8PUQNzitGTHK3p15HlW2vKY4jtk22-SVeGXcx0pKfKKEzmVwPZWXX9QoZX3erAsXW-R_cVg_0qREO7muu9_a2qZDo6EavavJERb3RsFzqdm5fbF9GOK59TLC7D2BLOGS54HBFzcRBzEaVhROXFDRlSxnY0zvFla2jak"></div><a class="interactive-btn w-full inline-flex items-center justify-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary py-3 rounded-full font-label-md text-label-md shadow-sm" href="https://wa.me/573000000000?text=%C2%A1Hola%20Dali%27s%20Bakery!%20Quisiera%20cotizar%20un%20detalle%20de%20gratitud%20u%20ocasi%C3%B3n%20especial" rel="noopener noreferrer" target="_blank"><span class="">Cotizar detalle de gratitud</span><span class="material-symbols-outlined text-[18px]">favorite</span></a></div></div><div class="value-card bg-surface-container-lowest rounded-lg p-space-lg shadow-sm flex flex-col justify-between group border border-transparent hover:border-secondary-container/60 reveal-init delay-300 reveal-visible"><div class="space-y-space-md"><div class="flex items-center justify-between"><span class="px-space-sm py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-bold">Iniciativas Dali's Bakery</span><span class="material-symbols-outlined text-[26px] text-secondary icon-bounce">sentiment_very_satisfied</span></div><div class="space-y-space-xs"><h3 class="font-headline-md text-headline-md text-primary">Celebrar Porque Sí</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Rompe la rutina y date un gusto sin necesidad de una fecha en el calendario. Empaques alegres para "Lunes de antojo", "Auto-regalo de mitad de semana" y momentos de amor propio.</p></div><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-[#25D366]">check_circle</span><span class="">Stickers y tags especiales de "Celebrar porque sí"</span></li><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-[#25D366]">check_circle</span><span class="">Formato express listo para disfrutar o compartir</span></li><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-[#25D366]">check_circle</span><span class="">Acompañado de canela roll, alfajores y minidulces</span></li></ul></div><div class="mt-space-lg space-y-space-md"><div class="rounded-xl overflow-hidden h-52 relative"><img alt="Celebrar Porque Sí Dali's Bakery" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmzkRHpaCM-1XLR5O5jHMIUUIESde8r-GOXN8Gz0mYDiL5f5SzZ53z8oDAzVRAgQvydIpgLfFXPqecC4i0ieXiGfYfhLAcPOwogmJA3yhophCNgjk8lpCgAVTwBYPZBjkaimFwfzda-6ff2DZGlH3_5XlqS_VEKwTzpLgiogrgb6ynhIyd5yCjJr2da5Z34XceOoEy64Sn3Uk4v3w5A3nXjA410E1ycNt8R-gcQggSeLzqGgUATPvqd42Lq4jRFx4HVM7IeRMw2ChonCI"></div><a class="interactive-btn w-full inline-flex items-center justify-center gap-space-xs bg-secondary-container hover:bg-secondary text-primary hover:text-on-secondary py-3 rounded-full font-label-md text-label-md shadow-sm" href="https://wa.me/573000000000?text=%C2%A1Hola%20Dali%27s%20Bakery!%20Quiero%20pedir%20mi%20auto-regalo%20para%20celebrar%20porque%20s%C3%AD" rel="noopener noreferrer" target="_blank"><span class="">Pedir mi auto-regalo hoy ✨</span><span class="material-symbols-outlined text-[18px]">mood</span></a></div></div></div></div></section>
+<!-- =========================================================================
+       SECCIÓN 4: CONECTA CON NOSOTROS EN REDES SOCIALES (#redes)
+       ========================================================================= -->
+<section class="w-full py-space-xl lg:py-24 bg-background" id="redes">
+<div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin">
+<div class="max-w-2xl mx-auto text-center space-y-space-xs mb-space-xl reveal-init reveal-visible">
+<span class="font-label-md text-label-md text-secondary font-bold tracking-wider uppercase">Comunidad Dulce</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">¡Sigue nuestro día a día y antojos en redes!</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Mira cómo horneamos con amor en Cali, nuestros empaques y las reacciones genuinas de quienes reciben una dulce sorpresa en su puerta.
+        </p>
+</div>
+<!-- Instagram / Reels Simulated Gallery Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm lg:gap-space-md mb-space-xl">
+<!-- Post 1 -->
+<div class="rounded-lg overflow-hidden relative group aspect-square bg-surface-container shadow-sm hover:shadow-md transition-shadow reveal-init delay-100 reveal-visible">
+<img alt="Video horneando postres" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" data-alt="Overhead camera view of delicate piping frosting onto cupcakes and miniature desserts in an artisan bakery workshop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyDJX_kE2r3GLXvVMUnWIWLQVb7Va4I4D8-UlE3yawIOMLqAmbFUvBGJYpyN1-DnzUpUMxp2Xch1jgGT8Xf7KzVxuWohpJqvk4VkVLCnBB0W2SqAaxuPUJKv8FCvbPRvaoq2VgLNusJ_m1IZyCGB1n88w2ShvvEEsfpswS3TdS4OsCZ9OajFuHmglgKAyjQUJy7M40AgHmryYYoiMrocVMMTx-lIF1XBggNKIXxtI4dsSE1aeaFOHw">
+<div class="absolute inset-0 bg-primary/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-on-primary gap-1 backdrop-blur-[2px]">
+<span class="material-symbols-outlined text-[24px]">play_circle</span>
+<span class="font-label-sm text-label-sm font-semibold">Ver Reel</span>
+</div>
+</div>
+<!-- Post 2 -->
+<div class="rounded-lg overflow-hidden relative group aspect-square bg-surface-container shadow-sm hover:shadow-md transition-shadow reveal-init delay-200 reveal-visible">
+<img alt="Empacando regalo personalizado" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" data-alt="Hands wrapping a luxury pastry box with peach silk ribbon and attaching handwritten greeting card" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzzEdh_ASp9bMcUECJb7MfD_X3I5cGIq1-isLc0NqoKPF9QIOcQ0eaGgZRKInLMqaHDqry85U_KeexURyYmRLFloLdbx6Z-rT8G-Knbe57nUjxrOG2SzFRY0hMl6cH8aMRRsw8bEHBZ185khvY7ylUmMEGSH6f_5-W-jjvcf1Haw9TaYOa-BYzlRmx1GI0mRggo20cD5VSg1KwmHlw-y804HTK_rsrgqTooiGjcY4EXyalV2wUwP4k">
+<div class="absolute inset-0 bg-primary/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-on-primary gap-1 backdrop-blur-[2px]">
+<span class="material-symbols-outlined text-[24px]">photo_camera</span>
+<span class="font-label-sm text-label-sm font-semibold">@dalisbakery</span>
+</div>
+</div>
+<!-- Post 3 -->
+<div class="rounded-lg overflow-hidden relative group aspect-square bg-surface-container shadow-sm hover:shadow-md transition-shadow reveal-init delay-300 reveal-visible">
+<img alt="Alfajores recién salidos" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" data-alt="Fresh batch of golden alfajores sprinkled with powdered sugar on vintage baking tray" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtqU5RFRzYEqqw2pRaDBWrhw2GpUdZv7FyxHmguQIP_cC84X9qCzG9LtLUQKnLGozscGfneImGCRQeBTf6gcewiGTthZzoM3SPPc1yPGzCwytODI5LABQl11WZQL8c9K5j_WNy_LxSriHEeP8Q8E2QXBED9DUYPZN3GiqiHT4IVqIVcRXygGh3N4VkRmxme5zKpau7V0I9dM3MX4mFJv6HYYf6TmrKIZf5PF6rZ2LHtd1swRvFtOUw">
+<div class="absolute inset-0 bg-primary/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-on-primary gap-1 backdrop-blur-[2px]">
+<span class="material-symbols-outlined text-[24px] text-secondary">favorite</span>
+<span class="font-label-sm text-label-sm font-semibold">1,820 likes</span>
+</div>
+</div>
+<!-- Post 4 -->
+<div class="rounded-lg overflow-hidden relative group aspect-square bg-surface-container shadow-sm hover:shadow-md transition-shadow reveal-init delay-400 reveal-visible">
+<img alt="Reacción cliente recibiendo sorpresa" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" data-alt="Happy recipient smiling holding a beautiful Dali's Bakery customized dessert box at home in Cali Colombia" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCpbYTt5xsdr4KH2eRzbmaJIi2NvCd3ZNrGSqQoVMAVC2AypIIO5cicxhnLtxC-pU6zHU5S6WMveF2coQqhQMXVclTZ8Mqz6yv1ZRYQwy-tYoZOBE5ONIFTxWA1k_sUVeDXDSsQ_P3VQbx2_wFEySet6lSyAOZARSqG8LJ-rRMGrF62yBi40UWEAnXMvZYAhsHTEnlUJQshER__lImBs94a_0QSdIye_NPYXl0qDJRAcRaaLAXpZqr">
+<div class="absolute inset-0 bg-primary/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-on-primary gap-1 backdrop-blur-[2px]">
+<span class="material-symbols-outlined text-[24px]">play_circle</span>
+<span class="font-label-sm text-label-sm font-semibold">Reacciones</span>
+</div>
+</div>
+</div>
+<!-- Social Official Channel Action Buttons -->
+<div class="flex flex-wrap items-center justify-center gap-space-sm reveal-init reveal-visible">
+<!-- TikTok -->
+<a class="interactive-btn inline-flex items-center gap-space-xs bg-surface-container-lowest hover:bg-surface-container px-space-md py-3 rounded-full font-label-md text-label-md text-primary shadow-sm" href="https://tiktok.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px] text-primary">play_circle</span>
+<span class="">TikTok: @dalisbakerycali</span>
+</a>
+<!-- Instagram -->
+<a class="interactive-btn inline-flex items-center gap-space-xs bg-secondary-container/40 hover:bg-secondary-container text-secondary px-space-md py-3 rounded-full font-label-md text-label-md shadow-sm" href="https://instagram.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px] text-secondary">photo_camera</span>
+<span class="">Instagram: @dalisbakery</span>
+</a>
+<!-- WhatsApp Direct -->
+<a class="interactive-btn inline-flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary px-space-md py-3 rounded-full font-label-md text-label-md shadow-[0_4px_16px_rgba(66,37,24,0.2)]" href="https://wa.me/573000000000?text=%C2%A1Hola%20Dali%27s%20Bakery!%20Los%20vi%20en%20redes%20sociales%20y%20quiero%20hacer%20un%20pedido" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px] text-tertiary-fixed">chat</span>
+<span class="">Escríbenos por WhatsApp</span>
+</a>
+<a class="interactive-btn inline-flex items-center gap-space-xs bg-surface-container-lowest hover:bg-surface-container px-space-md py-3 rounded-full font-label-md text-label-md text-primary shadow-sm" href="https://facebook.com" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px] text-secondary">thumb_up</span><span class="">Facebook: Dalis Bakery</span></a></div>
+</div>
+</section>
+<!-- =========================================================================
+       SECCIÓN 5: UBICACIÓN Y CONTACTO (#ubicacion)
+       ========================================================================= -->
+<section class="w-full py-space-xl lg:py-24 bg-surface-container-low" id="ubicacion">
+<div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin">
+<div class="max-w-2xl mx-auto text-center space-y-space-xs mb-space-xl reveal-init reveal-visible">
+<span class="font-label-md text-label-md text-secondary font-bold tracking-wider uppercase">Cobertura &amp; Entregas</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Recibe en tu puerta</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Horneamos y despachamos diariamente desde nuestra cocina&nbsp; para llevar felicidad dulce a cualquier rincón de Santiago de Cali.
+        </p>
+</div>
+<div class="max-w-4xl mx-auto w-full bg-surface-container-lowest rounded-lg p-space-lg lg:p-space-xl shadow-sm border border-outline-variant/30 space-y-space-lg reveal-init delay-100 reveal-visible"><div class="text-center space-y-space-xs max-w-xl mx-auto"><div class="inline-flex items-center gap-space-xs text-secondary justify-center"><span class="material-symbols-outlined text-[22px] animate-bounce">location_on</span><span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">Santiago de Cali, Colombia</span></div><h3 class="font-headline-md text-headline-md text-primary">Cobertura de Envíos en la Ciudad</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Llevamos tus antojos y regalos con transportistas especializados en pastelería fina para asegurar que lleguen frescos, intactos y a tiempo.</p></div><div class="grid grid-cols-2 sm:grid-cols-3 gap-space-sm"><div class="p-space-sm rounded-lg bg-surface-container hover:bg-secondary-container/30 transition-all duration-300 text-center shadow-sm hover:scale-[1.03] cursor-default"><p class="font-label-sm text-label-sm font-bold text-primary">Zona Norte</p><p class="font-label-sm text-label-sm text-on-surface-variant">Granada &amp; Versalles</p></div><div class="p-space-sm rounded-lg bg-surface-container hover:bg-secondary-container/30 transition-all duration-300 text-center shadow-sm hover:scale-[1.03] cursor-default"><p class="font-label-sm text-label-sm font-bold text-primary">Zona Sur</p><p class="font-label-sm text-label-sm text-on-surface-variant">Ciudad Jardín &amp; Pance</p></div><div class="p-space-sm rounded-lg bg-surface-container hover:bg-secondary-container/30 transition-all duration-300 text-center shadow-sm hover:scale-[1.03] cursor-default"><p class="font-label-sm text-label-sm font-bold text-primary">Zona Oeste</p><p class="font-label-sm text-label-sm text-on-surface-variant">El Peñón &amp; San Antonio</p></div><div class="p-space-sm rounded-lg bg-surface-container hover:bg-secondary-container/30 transition-all duration-300 text-center shadow-sm hover:scale-[1.03] cursor-default"><p class="font-label-sm text-label-sm font-bold text-primary">Zona Centro</p><p class="font-label-sm text-label-sm text-on-surface-variant">San Fernando &amp; Tequendama</p></div><div class="p-space-sm rounded-lg bg-surface-container hover:bg-secondary-container/30 transition-all duration-300 text-center shadow-sm hover:scale-[1.03] cursor-default"><p class="font-label-sm text-label-sm font-bold text-primary">Valle del Lili</p><p class="font-label-sm text-label-sm text-on-surface-variant">Entregas programadas</p></div><div class="p-space-sm rounded-lg bg-surface-container hover:bg-secondary-container/30 transition-all duration-300 text-center shadow-sm hover:scale-[1.03] cursor-default"><p class="font-label-sm text-label-sm font-bold text-primary">Jamundí &amp; Alrededores</p><p class="font-label-sm text-label-sm text-on-surface-variant">Bajo pedido previo</p></div></div><div class="rounded-xl overflow-hidden shadow-md h-64 relative border border-outline-variant/30 group" data-location="Santiago de Cali, Valle del Cauca, Colombia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_MRBeVmnWRp-2u6_FUGIITcoqipHIJF81reGBBz7tGUksdrWLXUHnKS-XE79unpFDImTywVeNapCHMX8LK-WW0SgzbCAIllkl7BYDNmTeAlzoza9utObQF7bLkXjEDIOoMBFm9lRUB9g6aXZOekfX6VlLSlCah8XzUpBEpdSvMAfE2eUKqDn45QtkqLyrygo-hc-vHDHSd_4y5klF0gEmkTz1veTobjKqH7brB7nW2aCr4KOqQTOT'); background-size: cover; background-position: center;"><div class="absolute inset-0 bg-primary/20 backdrop-blur-[1px] flex flex-col items-center justify-center p-space-md text-center gap-space-sm transition-all duration-300 group-hover:bg-primary/30"><div class="bg-surface-container-lowest/95 backdrop-blur-sm px-space-lg py-2.5 rounded-full shadow-md flex items-center gap-space-xs text-primary animate-float"><span class="material-symbols-outlined text-secondary">explore</span><span class="font-label-sm text-label-sm font-bold">Despachos diarios en todo Cali y área metropolitana</span></div><a class="interactive-btn inline-flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary px-space-md py-2 rounded-full font-label-sm text-label-sm shadow-sm" href="https://wa.me/573001234567?text=%C2%A1Hola!%20Quisiera%20consultar%20la%20tarifa%20y%20tiempo%20de%20entrega%20para%20mi%20zona" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px] text-tertiary-fixed">chat</span><span class="">Consultar tarifa de domicilio a mi barrio</span></a></div></div></div>
+</div>
+</section>
+</div></main>
+<!-- Sticky WhatsApp Action & Pill -->
+<aside class="fixed bottom-6 right-6 z-50 flex items-center gap-space-xs">
+<div class="hidden md:flex items-center bg-surface px-space-md py-2 rounded-full shadow-[0_12px_32px_-6px_rgba(66,37,24,0.14)] text-primary font-label-sm text-label-sm border border-outline-variant/30 animate-float">
+<span class="">¿Antojo o regalo especial? Escríbenos por WhatsApp</span>
+</div>
+<a aria-label="Contactar a Dali's Bakery por WhatsApp" class="w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-on-primary shadow-[0_12px_28px_rgba(37,211,102,0.38)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95 animate-whatsapp-pulse" href="https://wa.me/573001234567?text=Hola%20Dali%27s%20Bakery,%20quisiera%20hacer%20un%20pedido%20personalizado" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[30px]">chat</span>
+</a>
+</aside>
+<!-- Toast Preview Notification -->
+<div class="fixed bottom-24 right-6 z-50 max-w-sm bg-surface-container-lowest text-primary px- space-md p-4 rounded-xl shadow-2xl border border-secondary-container/50 flex items-center gap-3" id="toast-notification">
+<div class="w-10 h-10 rounded-full bg-secondary-container/40 flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]">check_circle</span>
+</div>
+<div class="flex-1 text-left">
+<p class="font-label-sm text-label-sm font-bold text-primary" id="toast-title">Conectando con WhatsApp...</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs" id="toast-desc">Preparando tu mensaje personalizado</p>
+</div>
+</div>
+<footer class="w-full bg-surface-container-high text-on-surface pt-space-xl pb-space-lg shadow-[0_-1px_10px_rgba(66,37,24,0.03)]"><div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl pb-space-xl"><div class="space-y-space-sm"><div class="flex items-center gap-space-xs"><img alt="Logo Dali's Bakery" class="h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaKXWGDbNTqHNQMuzRsDpIHIddZoZNMpMG35zB5QlIY1nNzmpLa8L39sl8Cs5K3jxyopEEP7osJIF8uF4Prz2MhBlWIYUyFdSb7_fbBRpUkEsxWlQ16mnERqWSZdsnhOHfZZ8DajIdFZ9KW_bV5an4xR1RAbgvTE6tIJ3qTLUBQYqvAPSxjlyHsPYu4A4r9WEO2eUrIPoJIqngaw3fcIsovL-N8cpQM4_p0IzMa-ljsHjnEzp7mj65KHXmtJHZa3JFUoWCWGEFfGvfpEI"><span class="font-headline-sm text-headline-sm text-primary font-semibold">Dali's Bakery</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Repostería artesanal contemporánea y tortas en Santiago de Cali. Diseñamos experiencias dulces con ingredientes prémium y atención personalizada.</p><div class="flex items-center gap-space-xs pt-space-xs"><a aria-label="Instagram" class="w-10 h-10 rounded-full bg-surface hover:bg-secondary-container hover:text-on-secondary-container text-on-surface flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm" href="https://instagram.com" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">photo_camera</span></a><a aria-label="TikTok" class="w-10 h-10 rounded-full bg-surface hover:bg-secondary-container hover:text-on-secondary-container text-on-surface flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm" href="https://tiktok.com" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">play_circle</span></a><a aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-surface hover:bg-secondary-container hover:text-on-secondary-container text-on-surface flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm" href="https://wa.me/573001234567" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">chat</span></a><a aria-label="Facebook" class="w-10 h-10 rounded-full bg-surface hover:bg-secondary-container hover:text-on-secondary-container text-on-surface flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm" href="https://facebook.com" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">thumb_up</span></a></div></div><div class="space-y-space-xs"><h4 class="font-headline-sm text-headline-sm text-primary">Navegación</h4><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li class=""><a class="hover:text-secondary transition-colors inline-block hover:translate-x-1 duration-200" href="#inicio">Inicio</a></li><li class=""><a class="hover:text-secondary transition-colors inline-block hover:translate-x-1 duration-200" href="#catalogo">Catálogo de Temporada</a></li><li class=""><a class="hover:text-secondary transition-colors inline-block hover:translate-x-1 duration-200" href="#propuesta">Nuestra Filosofía Dulce</a></li><li class=""><a class="hover:text-secondary transition-colors inline-block hover:translate-x-1 duration-200" href="#personalizacion">Mesas de Postres &amp; Encargos</a></li><li class=""><a class="hover:text-secondary transition-colors inline-block hover:translate-x-1 duration-200" href="#ubicacion">Puntos de Despacho</a></li></ul></div><div class="space-y-space-xs"><h4 class="font-headline-sm text-headline-sm text-primary">Cobertura &amp; Horarios</h4><p class="font-body-sm text-body-sm text-on-surface-variant flex items-start gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">schedule</span><span class="">Lunes a Sábado: 8:00 AM – 7:00 PM<br>Domingos &amp; Festivos: 9:00 AM – 4:00 PM</span></p><p class="font-body-sm text-body-sm text-on-surface-variant flex items-start gap-space-xs pt-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">pin_drop</span><span class="">Envíos directos en Cali: Granada, Ciudad Jardín, El Peñón, Pance, San Fernando y zona metropolitana.</span></p></div><div class="space-y-space-xs"><h4 class="font-headline-sm text-headline-sm text-primary">Pedidos Inmediatos</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Coordina tu entrega programada para fechas especiales y celebraciones con nuestro conserje repostero.</p><a class="interactive-btn inline-flex items-center gap-space-xs px-space-md py-2 bg-primary-container text-on-primary rounded-full font-label-md text-label-md transition-all hover:bg-primary shadow-sm" href="https://wa.me/573001234567" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]">send</span><span class="">Conversar con Pastelería</span></a></div></div><div class="pt-space-md border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-label-sm text-label-sm"><p class="">© 2025 Dali's Bakery. Todos los derechos reservados. Hecho con pasión en Santiago de Cali, Colombia.</p><div class="flex gap-space-md"><span class="">Registro Sanitario • Artesanal Premium</span></div></div></div></footer>
+<!-- Interactive JavaScript for animations, tabs, and toast feedback -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 1. Scroll Reveal with IntersectionObserver
+    const reveals = document.querySelectorAll('.reveal-init');
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(el => revealObserver.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('reveal-visible'));
+    }
+
+    // 2. Interactive Category Tabs with smooth fade
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-primary-container', 'text-on-primary', 'active-filter');
+          b.classList.add('bg-surface-container-lowest', 'text-primary');
+        });
+
+        this.classList.add('bg-primary-container', 'text-on-primary', 'active-filter');
+        this.classList.remove('bg-surface-container-lowest', 'text-primary');
+
+        const filter = this.getAttribute('data-filter');
+
+        productCards.forEach(card => {
+          const categories = card.getAttribute('data-category') || '';
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.96)';
+
+          setTimeout(() => {
+            if (filter === 'all' || categories.includes(filter)) {
+              card.style.display = 'flex';
+              requestAnimationFrame(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+              });
+            } else {
+              card.style.display = 'none';
+            }
+          }, 200);
+        });
+      });
+    });
+
+    // 3. Delightful Toast feedback on product order intent
+    const orderBtns = document.querySelectorAll('.product-order-btn');
+    const toast = document.getElementById('toast-notification');
+    const toastTitle = document.getElementById('toast-title');
+    const toastDesc = document.getElementById('toast-desc');
+    let toastTimeout;
+
+    orderBtns.forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        const itemName = this.getAttribute('data-item') || 'este antojo';
+        toastTitle.textContent = '¡Excelente elección!';
+        toastDesc.textContent = 'Abriendo WhatsApp para pedir: ' + itemName;
+        
+        toast.classList.add('toast-active');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toast.classList.remove('toast-active');
+        }, 3200);
+      });
+    });
+
+    // 4. Smooth Anchor Link Navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId.length > 1) {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            const headerHeight = 80;
+            const elementPosition = targetEl.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+  });
+</script>
+
+
+</body></html>
